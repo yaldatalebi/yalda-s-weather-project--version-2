@@ -1,2 +1,393 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+    <style>
+      .body{
+        background-color:#c5dbe9cc;
+        max-width: 800px;
+        min-width: 800px;
+        width: fit-content;
+        padding: 50px;
+        align-content: center;
+        border: #096dbf35;
+        border-style: solid;
+        border-width: 5px;
+        margin: 50PX auto;
+        box-shadow: rgba(0, 0, 0, 0.094) 15px 15px 20px 10px;
+      }
+      body{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-image: url(https://static.vecteezy.com/system/resources/previews/002/233/683/original/seamless-random-baby-pattern-with-blue-water-drops-on-white-background-nature-liquid-rain-pattern-illustration-cartoon-rain-weather-wallpaper-rainy-day-vector.jpg);
+        }
+      .btn-pluse{
+        border-radius: 1000px;
+        color:#42A5F5;
+        background-color: #F8FCFF;
+        border-style: solid;
+        border-color: #42a4f584;
+        padding: 9px 11px;
+        margin: 0px 5px;
+        }
+
+      .celc{
+        border-radius: 1000px 0 0px 1000px;
+        background-color: rgb(255, 202, 95);
+        font-size: 10px;
+        border-width: 1px;
+        border-color: #949494;
+        padding: 5px 10px 5px 10px;
+      }
+
+      .celc:hover , .celc:visited, .celc:after {
+        background-color: rgb(192, 125, 0);
+        border-width: 0px;
+      }
+      
+      .faren{
+        padding: 5px 10px 5px 10px;
+        border-radius: 0 1000px 1000px 0;
+        background-color: rgb(87, 157, 255);
+        font-size: 10px;
+        border-width: 1px;
+        border-color: #949494;
+        }
+      
+      .faren:hover {
+        background-color: #005296;
+      }
+      .hav{
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 16px;
+      }
+      .hav:hover {
+        background-color: rgb(16, 197, 109);
+      }
+      
+      .forms{
+        border-radius: 10000px;
+        color: #42A5F5;
+        background-color: #F8FCFF;
+        border-style: solid;
+        border-color: #42a4f57b;
+        padding: 10px;
+        margin: 0 5px;
+        }
+
+      .sun{
+        font-size: 140px;
+        text-align: right;
+        margin-top: -220px;
+        margin-right: 70px; 
+      }
+      
+        .forms-2{
+        text-align: center;
+        color: #7f7f7f;
+        }
+        .week{
+          font-size: 17px;
+          text-align: center;
+          color: #0075d4;
+          font-weight: bold;
+        }
+        .today{
+        
+        font-size: 25px;
+        margin-top: 0px;
+        margin-bottom: -30px;
+        
+        }
+        .temp{
+            font-size: 15px;
+            margin-top: -40px;
+            color: #5a6275;
+            margin-left: 150px;
+
+        }
+        .desc{
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .time{
+            font-size: 15px;
+            margin-top: 10px;
+            color: #5a6275;
+            margin-left: 10px;
+
+        }
+        .temp2{
+            font-size: 13px;
+            color: red;
+            font-weight: bolder;
+            text-align: center;
+        }
+        .chem{
+          font-size: 60px;
+          text-align: center;
+          -ms-layout-grid: initial;
+          margin-bottom: -35px;
+        }
+        .cards{
+          border-style: solid;
+          border-radius: 1000px;
+          color: #ffedb1;
+          background-color: #FDFACF;
+          padding: 33px 20px;
+          min-width: 20px;
+          
+        }
+       .cards:hover{
+        background-color: #fff388;
+       }
+      ::-webkit-input-placeholder{
+        color: #949494;
+        }
+
+      h1 {
+        color: #5a6275;
+        font-size: 50px;
+        }
+      h3{
+        font-size: 15px;
+        color: #42A5F5;
+        }
+      h6{
+        color: #5a6275;
+        font-weight: 200;
+        
+      }
+      
+      button:hover{
+        background-color: #0075d4;
+        color: #F8FCFF;
+      }
+     
+    </style>
+  </head>
+<body>
+  <div class="body">
+    <h1 id="Ctemp">🌡️loading... <span class="time" id="temp">  </span></h1>
+    <h3 id="CCity">📍 current Location</h3>
+    <h4><p class="today" id="today" >Today</p><span class="temp" id="time"> time </span>
+  
+    
+    </h4>
+    <h6><div class="desc" id="desc"> describtion</div><div id="wind">🌬️ wind speed</div><div id="humidity">💧humidity</div> </h6>
+ 
+    <div class="sun">☀️</div>
+    <br/>
+  
+
+
+    <div class="row row-cols-1 row-cols-md-5 g-1">
+  <div class="col"><h5 class="chem">⛅</h5>
+    <div class="cards">
+      <div class="card-body">
+        
+        <h5 class="week" id="first">Fri.</h5>
+        <p class="temp2">15/8℃</p>
+      </div>
+    </div>
+  </div>
+  <div class="col"><h5 class="chem">🌦️</h5>
+    <div class="cards">
+      <div class="card-body">
+        
+        <h5 class="week" id="sec">Sat.</h5>
+        <p class="temp2">10/5℃</p>
+      </div>
+    </div>
+  </div>
+  <div class="col"><h5 class="chem">⛈️</h5>
+    <div class="cards">
+      <div class="card-body">
+        <h5 class="week" id="third">Sun.</h5>
+        <p class="temp2">8/3℃</p>
+      </div>
+    </div>
+  </div>
+  <div class="col"><h5 class="chem">🌩️</h5>
+    <div class="cards">
+      <div class="card-body">
+        
+        <h5 class="week" id="forth">Mon.</h5>
+        <p class="temp2">5/3℃</p>
+      </div>
+    </div>
+  </div>
+  <div class="col"><h5 class="chem">🌨️</h5>
+    <div class="cards">
+      <div class="card-body">
+        
+        <h5 class="week" id="fifth">Tue.</h5>
+        <p class="temp2">0/-5℃</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+    <form class="forms-2" id="city">
+       Check other locations: <input type="text" autocomplete="on" placeholder="Enter a location name " class="forms" id="inputCity"/><button type="button" class="btn-pluse" id="btn">Go</button><button type="button" class="btn-pluse hav" id="currentbtn">📍</button></form>
+    
+  </body>
+</div>
+<script>
+function searchcity(city){
+  city=city.charAt(0).toUpperCase()+city.slice(1).toLowerCase();
+  document.querySelector("#CCity").innerHTML=`📍  ${city}`;
+  let apiKey="210d99196a88b9257ed8cb3535a0a0c5";
+  let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemp);
+}
+function search(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#inputCity").value;
+  let newCity=`${searchInput}`;
+  newCity=newCity.charAt(0).toUpperCase()+newCity.slice(1).toLowerCase();
+  let citysearch=`${searchInput}`;
+  document.querySelector("#CCity").innerHTML=`📍  ${newCity}`;
+  searchcity(searchInput);
+}
+let form=document.querySelector("#city");
+form.addEventListener("submit", search);
+let button = document.querySelector("#btn");
+button.addEventListener("click", search);
+
+
+function showTemp(response) {
+
+console.log(response);
+let tempo= Math.round(response.data.main.temp);
+currentemp.innerHTML=`🌡️${tempo}℃`;
+let newCity=(response.data.name);
+document.querySelector("#CCity").innerHTML=`📍  ${newCity}`;
+let mini= (response.data.main.temp_min);
+let max= (response.data.main.temp_max);
+let descr=(response.data.weather[0].main);
+let windi=(response.data.wind.speed);
+let hum=(response.data.main.humidity);
+wind.innerHTML=`🌬️ ${windi}km/h`;
+humidity.innerHTML=`💧 ${hum}%`;
+desc.innerHTML=` ${descr}`;
+minmax.innerHTML=`${max}/${mini}℃`;
+}
+
+let minmax = document.querySelector("#temp");
+let currentemp = document.querySelector("#Ctemp");
+let desc = document.querySelector("#desc");
+let wind = document.querySelector("#wind");
+let humidity = document.querySelector("#humidity");
+
+
+
+
+let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+
+
+  let now=new Date();
+let base=now.getDay();
+let hours=now.getHours();
+let min=now.getMinutes();
+let newtime= hours;
+
+    if (min<10){
+    min=`0${min}`;}
+
+  if (hours>12){
+    hours2= hours-12;
+    if (hours2<10){
+    newtime=` 0${hours2} : ${min} PM`;}
+    else{
+    newtime=` ${hours2} : ${min} PM`;
+    }
+  }
+  if (hours===12) {
+    newtime=` ${hours} : ${min} PM`;
+  } 
+  if(hours<12){
+    if (hours<10){
+    newtime=` 0${hours} : ${min} AM`;}
+    else{
+    newtime=` ${hours} : ${min} AM`;
+    }
+  }
+
+let time = document.querySelector("#time");
+time.innerHTML=`${newtime}`;
+
+let day = days[base];
+let today = document.querySelector("#today");
+today.innerHTML=`${day}`;
+let first = document.querySelector("#first");
+let firstday = base+1;
+  if (firstday>6){
+    firstday=firstday-7;}
+  first.innerHTML=`${days[firstday]}`;
+
+
+let sec = document.querySelector("#sec");
+firstday=firstday+1;
+  if (firstday>6){
+    firstday=firstday-7;} 
+  sec.innerHTML=`${days[firstday]}`;
+
+let third = document.querySelector("#third");
+  firstday=firstday+1;
+  if (firstday>6){
+    firstday=firstday-7;} 
+  third.innerHTML=`${days[firstday]}`;
+
+  let forth = document.querySelector("#forth");
+  firstday=firstday+1;
+  if (firstday>6){
+    firstday=firstday-7;}
+  forth.innerHTML=`${days[firstday]}`;
+
+  let fifth = document.querySelector("#fifth");
+  firstday=firstday+1;
+  if (firstday>6){
+    firstday=firstday-7;}
+  fifth.innerHTML=`${days[firstday]}`;
+
+
+function searchlocation(position){
+let apiKey="210d99196a88b9257ed8cb3535a0a0c5";
+let apiUrl=`https:api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+console.log(apiUrl);
+axios.get(apiUrl).then(showTemp);
+}
+
+function getcurrent(event){
+event.preventDefault();
+navigator.geolocation.getCurrentPosition(searchlocation);
+}
+let btnlocation=document.querySelector("#currentbtn");
+btnlocation.addEventListener("click", getcurrent)
+searchcity("Tehran");
+
+
+</script>
+</html>
